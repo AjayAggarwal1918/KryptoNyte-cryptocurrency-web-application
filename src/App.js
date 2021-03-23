@@ -7,9 +7,6 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes'; 
 
 
-// CONSTANTS DEFINED
-const value=process.env.REACT_APP_50; 
-
 const App=()=>{
     return (
       <BrowserRouter>
