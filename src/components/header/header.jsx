@@ -1,13 +1,21 @@
+// DEPENDENCY IMPORTS
 import React,{ useState } from 'react'; 
 import FontAwesome from 'react-fontawesome'; 
+
+// COMPONENT IMPORTS 
+import SearchSlider from '../widgets/search-slider/search-slider';
+
+// CSS IMPORTS 
 import './header.css'; 
+
 
 const Header=()=>{
     const [navItems,setNavItems]=useState([
         {
             name:'SEARCH',
             logo:'fa fa-search',
-            mouseOver:false
+            mouseOver:false,
+            sliderNav:true
         },
         {
             name:'DASHBOARD',
@@ -47,17 +55,31 @@ const Header=()=>{
         }
     ]); 
 
+    const [showNav,setShowNav]=useState(false); 
+
+
+
+// HANDLERS DEFIND 
+
+    const handleSearchSlider=(event,val)=>{
+        if(!event || event.target.id==="SEARCH" || event.target.parentElement.id==="SEARCH"){
+            setShowNav(val); 
+        }
+    }
 
     const handleMouseEvent=(event,val)=>{
-        event.preventDefault(); 
+        event.preventDefault();
         const targetIdx=navItems.findIndex((item)=>{
             return item.name===event.target.id; 
         });
+        const updatedNavItems=[...navItems];
         if(navItems[targetIdx]){
-            const updatedNavItems=[...navItems];
-            updatedNavItems[targetIdx].mouseOver=val; 
-            setNavItems(updatedNavItems);
+            updatedNavItems[targetIdx].mouseOver=val;
         }
+        if(!val){                                                                           // if false then all false 
+            updatedNavItems.forEach(item=>{ item.mouseOver=val; });            
+        }
+        setNavItems(updatedNavItems);
     }
     
 
@@ -67,26 +89,32 @@ const Header=()=>{
                 {
                     navItems.map((item,index)=>{
                         return (
-                            <li 
-                                onMouseEnter={(event)=>handleMouseEvent(event,true)} 
-                                onMouseLeave={(event)=>handleMouseEvent(event,false)}
-                                key={index} 
-                                id={item.name}
-                                className={`header-side_nav-list_item ${item.mouseOver&&'header-side_nav-list_item-hover'}`}
-                            >
-                                <a 
-                                    className="header-side_nav-list_item_link" href={item.link}
+                            <a className="header-side_nav-list_item_link" key={index} href={item.link}>
+                                <li 
+                                    onMouseEnter={(event)=>handleMouseEvent(event,true)} 
+                                    onMouseLeave={(event)=>handleMouseEvent(event,false)}
+                                    onClick={(event)=>handleSearchSlider(event,true)}
+                                    key={index} 
+                                    id={item.name}
+                                    className={`header-side_nav-list_item ${item.mouseOver&&'header-side_nav-list_item-hover'}`}
                                 >
+                                    {
+                                        item.sliderNav&&<SearchSlider 
+                                                            showNav={showNav}
+                                                            onHideNav={(event)=>handleSearchSlider(event,false)}    
+                                                        />
+                                    }
                                     <FontAwesome 
                                         className={`${item.logo} ${item.mouseOver&&'logo-name-white'}`} 
                                         aria-hidden="true"  
+                                        name="a"
                                     />
                                     <br/>
                                     <span className={`logo-name ${item.mouseOver&&'logo-name-white'}`}>
                                         {item.name}
                                     </span>
-                                </a>
-                            </li>                    
+                                </li> 
+                            </a>                   
                         )
                     })
                 }
@@ -122,3 +150,4 @@ export default Header;
 
 
 /// linear-gradient(0deg,rgb(74, 0, 167),rgb(154, 58, 180))
+/// rgb(17, 18, 27)

@@ -1,0 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.layout-content_container{
+    background-color: white;
+    margin: 0 2rem 0 7rem; 
+    padding:1rem;
+    border-bottom: 3rem solid rgba(19, 16, 26, 0.904);
+    border-radius: 1rem; 
+}

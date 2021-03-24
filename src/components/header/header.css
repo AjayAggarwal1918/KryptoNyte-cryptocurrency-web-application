@@ -6,7 +6,7 @@
 
 .header-side_nav{
     width: 5rem;
-    height: 100vh;
+    height: 200%;
     background: linear-gradient(0deg,rgb(74, 0, 167),rgb(46, 9, 56));
     display:block; 
     position:fixed;
@@ -23,8 +23,8 @@
 
 .header-side_nav-list_item{
     cursor: pointer;
-    padding: 1rem 0; 
-    height: 4.3rem; 
+    padding: .5rem 0 1rem 0; 
+    height: 4rem; 
     border-bottom: solid 1px grey;
     text-transform: capitalize;
     cursor: pointer;
@@ -34,13 +34,13 @@
     background:linear-gradient(0deg,rgb(74, 0, 167),rgb(154, 58, 180)); 
 }
 
-.header-side_nav-list_item_link{
+.header-side_nav-list_item_link,a{
     cursor: pointer;
     color:rgba(255,255,255,0.8);
     text-transform: capitalize;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
     text-decoration: none;
-    font-size:.8rem;
+    font-size:.75rem;
     text-transform: uppercase;
 }
 
