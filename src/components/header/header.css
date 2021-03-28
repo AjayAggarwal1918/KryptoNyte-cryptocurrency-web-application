@@ -1,0 +1,62 @@
+*{
+    padding:0; 
+    margin:0; 
+    box-sizing: border-box;
+}
+
+.header-side_nav{
+    width: 5rem;
+    height: 200%;
+    background: linear-gradient(0deg,rgb(74, 0, 167),rgb(46, 9, 56));
+    display:block; 
+    position:fixed;
+}
+
+.header-side_nav-list{
+    background: none;
+    list-style:none; 
+    text-align: center;
+    justify-content:center;
+    align-items: center; 
+    cursor: pointer;
+}
+
+.header-side_nav-list_item{
+    cursor: pointer;
+    padding: .5rem 0 1rem 0; 
+    height: 4rem; 
+    border-bottom: solid 1px grey;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.header-side_nav-list_item-hover{
+    background:linear-gradient(0deg,rgb(74, 0, 167),rgb(154, 58, 180)); 
+}
+
+.header-side_nav-list_item_link,a{
+    cursor: pointer;
+    color:rgba(255,255,255,0.8);
+    text-transform: capitalize;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+    text-decoration: none;
+    font-size:.75rem;
+    text-transform: uppercase;
+}
+
+.header-side_nav-list_item_link .fa{
+    color:rgba(255,255,255,0.4);
+    font-size: 1.1rem;
+    padding-bottom: .3rem;
+    cursor: pointer;
+}
+
+.header-side_nav-list_item_link .logo-name-white{
+    color:rgba(247, 251, 252, 0.966)
+}
+
+
+
+
+
+
