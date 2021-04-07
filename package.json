@@ -15,7 +15,10 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-simple-sidenav": "^2.0.0",
+    "react-slick": "^0.28.1",
     "react-trend": "^1.2.5",
+    "react-vis": "^1.11.7",
+    "recharts": "^2.0.9",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

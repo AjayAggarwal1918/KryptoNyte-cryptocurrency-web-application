@@ -4,11 +4,25 @@
     box-sizing: border-box;
 }
 
+.hide{
+    display: none;
+}
+
 .graph-type-A{
     width:10rem; 
     display: inline-block;
-    margin: 0 2rem; 
+    margin: 0 1.5rem; 
+    cursor: pointer;
 }
+
+.graph-type-A-overlay-coins{
+    width:10rem; 
+    position: absolute;
+    height:100%; 
+    background-color: rgba(0, 0, 0, .30);
+    cursor: pointer;
+}
+
 
 .graph-type-A-label{
     color:white; 
