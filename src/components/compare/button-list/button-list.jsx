@@ -38,16 +38,16 @@ const ButtonList=(props)=>{
                                 <li
                                     title={item.label}
                                     id={item.id} 
-                                    className="button-list_item" 
+                                    className="button-list_item"
                                     key={index} 
-                                    onClick={(event)=>props.handleTopicClick(event)}
+                                    onClick={(event)=>props.handleTopicClick(event,props.position)}
                                 >
                                     <button 
                                         title={item.label}
                                         id={item.id}
-                                        className="button-list_item_btn btn" 
+                                        className="button-list_item_btn btn"
                                         type="button"
-                                        onClick={(event)=>props.handleTopicClick(event)}
+                                        onClick={(event)=>props.handleTopicClick(event,props.position)}
                                     >
                                         {item.label}
                                     </button>

@@ -19,46 +19,62 @@ const Compare=(props)=>{
         data:[],
         right:false,
         YAxes1:'',
-        YAxes2:''
+        YAxes2:'',
+        value1:'',
+        value2:''
     }); 
             
-    useEffect(()=>{ 
-        console.log(props.match.params.topic); 
-        if(chartsData.data.length===0){
-            Axios.get(`https://api.lunarcrush.com/v2?data=global&key=de2osuahzkn99zhpn1iasr&data_points=45&interval=day`)
-            .then(result=>{
-                console.log(result.data.data.timeSeries);
-                const data=result.data.data.timeSeries.map((item,index)=>({
-                                                                            name:timeConverter(item.time),
-                                                                            tweets:item.tweets,
-                                                                            youtube:item.youtube
-                                                                        })); 
-                console.log(data); 
-                return data; 
-            })
-            .then(result=>{
-                if(chartsData.data.length!==result.length){
-                    let newChartsData={...chartsData}; 
-                    newChartsData['data']=result; 
-                    setChartsData(newChartsData);
-                }
-            })
-            .catch(error=>{
-                console.error(error);
-            }); 
-        }
-    }); 
-
-
-    const handleTopicClick=(event)=>{
-        if(event.target.title==='Clear'){
+    useEffect(()=>{
+        if(chartsData.value1===''){
             let updatedChartsData={...chartsData}; 
-            updatedChartsData['right']=!chartsData.right; 
+            if(props.match.params.topic)    updatedChartsData.value1=props.match.params.topic; 
+            else
+            updatedChartsData.value1='news'; 
             setChartsData(updatedChartsData); 
             return; 
         }
+        
+        if(!(chartsData.value1===chartsData.YAxes1 && chartsData.value2===chartsData.YAxes2)){                       // avoiding infinite loop 
+            Axios.get(`https://api.lunarcrush.com/v2?data=global&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&data_points=45&interval=day`)
+            .then(result=>{
+                const data=result.data.data.timeSeries.map((item,index)=>({
+                                                                            name:timeConverter(item.time),
+                                                                            [chartsData.value1]:item[chartsData.value1],
+                                                                            [chartsData.value2]:item[chartsData.value2]
+                                                                        })); 
+                return data; 
+            })
+            .then(result=>{ 
+                let newChartsData={...chartsData}; 
+                newChartsData['data']=result;
+                newChartsData['YAxes1']=chartsData.value1; newChartsData['YAxes2']=chartsData.value2;
+                if(newChartsData['YAxes2']!=='') newChartsData['right']=true; 
+                else 
+                newChartsData['right']=false; 
+                setChartsData(newChartsData);
+            })
+            .catch(error=>{
+                console.error(error);
+            });
+        }
+    }); 
 
-        console.log(event.target.title,event.target.id);
+
+    const handleTopicClick=(event,pos)=>{
+        let updatedChartsData={...chartsData}; 
+        if(event.target.title==='Clear'){
+            updatedChartsData['right']=false; 
+            updatedChartsData['YAxes2']=updatedChartsData['value2']=''; 
+            setChartsData(updatedChartsData); 
+            return; 
+        }
+        
+        if(pos==='left')   updatedChartsData['value1']=event.target.id;
+        else
+        updatedChartsData['value2']=event.target.id;  
+        
+        setChartsData(updatedChartsData); 
+        //console.log(event.target.title,event.target.id); 
     };
 
 
@@ -70,23 +86,23 @@ const Compare=(props)=>{
             <div className="compare-content-wrapper">
                 <div className="button-list-wrapper">
                     <ButtonList 
-                        handleTopicClick={(event)=>handleTopicClick(event)}
+                        handleTopicClick={(event,pos)=>handleTopicClick(event,pos)}
                         label="LEFT DIMENSION"
                         clear={false}
-                        position='left' 
-                        />
+                        position='left'
+                    />
                 </div>
                 <div className="compare-graph-wrapper">
                     <GraphTypeB 
-                        YAxes2={'youtube'}
-                        YAxes1={'tweets'}
+                        YAxes1={chartsData.YAxes1}
+                        YAxes2={chartsData.YAxes2}
                         right={chartsData.right}
                         data={chartsData.data}
                     />
                 </div>
                 <div className="button-list-wrapper">
                     <ButtonList 
-                        handleTopicClick={(event)=>handleTopicClick(event)}
+                        handleTopicClick={(event,pos)=>handleTopicClick(event,pos)}
                         label="RIGHT DIMENSION" 
                         clear={true}
                         position='right'
@@ -98,13 +114,6 @@ const Compare=(props)=>{
 }; 
 
 export default Compare; 
-
-
-
-
-
-
-
 
 
 
