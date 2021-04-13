@@ -9,3 +9,10 @@
     z-index: 1 !important;
     border-right:inset;
 }
+
+value-text-color-red{
+    color: red;
+}
+value-text-color-green{
+    color: green;
+}

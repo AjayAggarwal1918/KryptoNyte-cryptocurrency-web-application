@@ -11,29 +11,49 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 //  JS FILES 
-import { handleFetchCoinData } from './handleFetchCoinData'; 
+import { handleFetchCoinData } from './handleFetchCoinData';
 
 //  CSS FILES 
-import './coins-table.css'; 
+import './coins-table.css';
 
 
 //columns in the table
 const columns = [
-    { id: 'name', label: 'Coin', minWidth: 170 },
-    { id: 'galaxy_score', label: 'Galaxy Score', minWidth: 100 },
+    { id: 'name', label: 'Coin', minWidth: 170, },
+    { id: 'galaxy_score', label: 'Galaxy Score', minWidth: 100, display: 'hidden' },
     { id: 'alt_rank', label: 'Alt Rank', minWidth: 100 },
     { id: 'price', label: 'PRICE (USD)', minWidth: 100 },
-    { id: 'percent_change_24h', label: '24H % Change (USD)', minWidth: 100 },
-    { id: 'percent_change_7d', label: '24H % Change (USD)', minWidth: 100 },
-    { id: 'percent_change_30d', label: '24H % Change (USD)', minWidth: 100 },
+    {
+        id: 'percent_change_24h', label: '24H % Change (USD)',
+        minWidth: 100, format: (value) => value.toFixed(2),
+        changeColor: (value) => value > 0 ? '#14ef14' : 'red'
+    },
+    {
+        id: 'percent_change_7d', label: '24H % Change (USD)',
+        minWidth: 100, format: (value) => value.toFixed(2),
+        changeColor: (value) => value > 0 ? '#14ef14' : 'red'
+    },
+    {
+        id: 'percent_change_30d', label: '24H % Change (USD)',
+        minWidth: 100, format: (value) => value.toFixed(2),
+        changeColor: (value) => value > 0 ? '#14ef14' : 'red'
+    },
     { id: 'market_cap', label: 'Market Cap (USD)', minWidth: 100 },
     { id: 'volume_24h', label: 'Market Value (USD)', minWidth: 100 },
-    { id: 'market_dominance', label: 'Market Dominance (%)', minWidth: 100 },
-    { id: 'volatility', label: 'Volatility', minWidth: 100 },
+    {
+        id: 'market_dominance', label: 'Market Dominance (%)',
+        minWidth: 100, format: (value) => value.toFixed(2),
+        changeColor: (value) => value > 0 ? '#14ef14' : 'red'
+    },
+    { id: 'volatility', label: 'Volatility', minWidth: 100, format: (value) => value.toFixed(4) },
     { id: 'social_volume', label: 'Social Volume', minWidth: 100 },//not sure if correct data from api is picked
     { id: 'social_score_calc_24h', label: 'Social Engagement', minWidth: 100 },//not sure if correct data from api is picked
     { id: 'social_contributors', label: 'Social Contributors', minWidth: 100 },//not sure if correct data from api is picked
-    { id: 'social_dominance', label: 'Social Dominance (%)', minWidth: 100 }
+    {
+        id: 'social_dominance', label: 'Social Dominance (%)',
+        minWidth: 100, format: (value) => value.toFixed(4),
+        changeColor: (value) => value >= 0 ? '#14ef14' : 'red'
+    }
 ];
 
 
@@ -48,8 +68,18 @@ const useStyles = makeStyles({
 });
 
 
-const CoinsTable=()=>{
+const CoinsTable = () => {
     const classes = useStyles();
+
+    // const [showColumn,setShowColumn]=useState(Array(15).fill(true));
+    // handleMetricsCheckboxClick=(e)=>{
+    //     setShowColumn(showColumn=>{
+    //         let mutatedShowColumn = showColumn;
+    //         mutatedShowColumn[e.index]=!mutatedShowColumn[e.index];
+    //         return mutatedShowColumn;
+    //     })
+    // }
+
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -69,13 +99,7 @@ const CoinsTable=()=>{
 
     //api calling below
     useEffect(() => {
-        async function fetchData() {
-            // You can await here
-            const response = await handleFetchCoinData(page, rowsPerPage);
-            return response;
-            // ...
-        }
-        fetchData()
+        handleFetchCoinData(page, rowsPerPage)
             .then(res => setRows(res))
     }, [page, rowsPerPage])
     //api calling above
@@ -88,6 +112,7 @@ const CoinsTable=()=>{
                 <center>COINS</center>
             </section>
             <Paper className={`${classes.root}`} >
+
                 <TableContainer className={`${classes.container}`}>
                     <Table stickyHeader aria-label="sticky table" className="coins-table-bg">
                         <TableHead >
@@ -96,9 +121,10 @@ const CoinsTable=()=>{
                                     <TableCell
                                         key={column.id}
                                         align={column.align}
-                                        style={{ minWidth: column.minWidth,
-                                            backgroundColor: 'rgb(17,18,28)', 
-                                            color: 'white' 
+                                        style={{
+                                            minWidth: column.minWidth,
+                                            backgroundColor: 'rgb(17,18,28)',
+                                            color: 'white'
                                         }}
                                         className={idx === 0 ? "coin-table-sticky-header" : ""}
                                     >
@@ -115,7 +141,7 @@ const CoinsTable=()=>{
                                             const value = row[column.id];
                                             return (
                                                 <TableCell key={column.id} align={column.align}
-                                                    style={{ backgroundColor: 'rgb(17,18,28)', color: 'white' }}
+                                                    style={{ backgroundColor: 'rgb(17,18,28)', color: column.changeColor ? column.changeColor(value) : 'white' }}
                                                     className={idx === 0 ? "coin-table-sticky-col" : ""}
                                                 >
                                                     {column.format && typeof value === 'number' ? column.format(value) : value}
@@ -145,4 +171,4 @@ const CoinsTable=()=>{
 }
 
 
-export default CoinsTable; 
+export default CoinsTable;
