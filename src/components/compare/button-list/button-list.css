@@ -1,0 +1,68 @@
+*{
+    padding:0; 
+    margin:0; 
+    box-sizing: border-box;
+}
+
+.button-list-container{
+    display: inline-block;
+    height: 35rem;
+    overflow: hidden; 
+    background-color: rgb(34, 31, 48);
+    position: relative;  
+    padding: 1rem 0rem; 
+    overflow-y: scroll;
+}
+
+
+.button-list-wrapper_left{
+    border-right: .05rem solid grey;
+}
+
+.button-list-wrapper_right{
+    border-left: .05rem solid grey; 
+}
+
+.button-list_label{
+    display: inline-block;
+    color:grey; 
+    padding: 0rem .5rem 1rem .5rem; 
+}
+
+.button-list_label:hover{
+    background-color: rgb(34, 31, 48);
+}
+
+.button-list_items{
+    display: inline-block;
+    list-style: none;
+    height: 35rem; 
+}
+
+.button-list_item{
+    color:rgba(206, 199, 199, 0.329); 
+    padding: 0.3rem 0.5rem; 
+    cursor: pointer;
+}
+
+.button-list_item:hover{
+    background-color: rgb(50, 45, 66);
+}
+
+
+.btn{
+    background: none;
+    outline:none; 
+    border: none;
+}
+
+.button-list_item_btn{
+    color:rgba(250, 243, 243, 0.925); 
+    margin:.5rem 0; 
+    font-family: fantasy;
+    word-spacing: .2rem;
+    font-weight: 10;
+    font-size: 1rem;
+    padding: 0 .2rem; 
+    cursor: pointer;
+}

@@ -25,6 +25,7 @@ const Routes=()=>{
                     <Route path="/" exact component={Dashboard} />
                     <Route path="/coins" exact component={Coins} />
                     <Route path="/compare" exact component={Compare} />
+                    <Route path="/compare/:topic" exact component={Compare} />
                     <Route path="/influencers" exact component={Influencers} />
                     <Route path="/feeds" exact component={Feeds} />
                     <Route path="/exchanges" exact component={Exchanges} />
