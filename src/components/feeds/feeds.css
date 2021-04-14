@@ -1,0 +1,85 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.feeds-logo-wrapper{
+    color: rgb(183, 187, 190);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    margin: 1rem 0;
+    height:3rem;
+    padding-top: .3rem;
+}
+
+.feeds-logo_content{
+    display: inline-block;
+    color: rgb(183, 187, 190);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: 1.5rem;
+}
+
+.feeds-logo_view{
+    display: inline-block;
+    position: relative;
+    left:70rem; 
+    right: 0;
+}
+
+.feeds-logo_view-list{
+    display: inline-block;
+    cursor: pointer;
+    margin-right:2rem;
+}
+
+.feeds-logo_view-block:hover,
+.feeds-logo_view-list:hover{
+    color: rgb(86, 86, 150);
+}
+
+.feeds-logo_view-block{
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+
+.feeds-image-wrapper{
+    width: 100%;
+    padding: 0.5rem .5rem; 
+    background-color: #01010eea;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.feeds-image{
+    width: 100%; 
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+
+.feeds-loadmore{
+    text-align: center;
+    color: dodgerblue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    margin-top: 2rem ;
+    cursor: pointer;
+}
+
+
+
+
+.blue{
+    color:dodgerblue; 
+}
+
+
+
+
+
