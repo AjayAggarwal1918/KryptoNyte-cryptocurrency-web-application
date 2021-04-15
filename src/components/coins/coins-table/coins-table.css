@@ -10,9 +10,10 @@
     border-right:inset;
 }
 
-value-text-color-red{
-    color: red;
-}
-value-text-color-green{
-    color: green;
+.metrics-check-box-menu{
+    position: absolute;
+    z-index: 5;
+    width: 100px;
+    float: right;
+    right: 10px;
 }
