@@ -9,6 +9,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
 
 //  JS FILES 
 import { handleFetchCoinData } from './handleFetchCoinData';
@@ -29,12 +33,12 @@ const columns = [
         changeColor: (value) => value > 0 ? '#14ef14' : 'red'
     },
     {
-        id: 'percent_change_7d', label: '24H % Change (USD)',
+        id: 'percent_change_7d', label: '7d % Change (USD)',
         minWidth: 100, format: (value) => value.toFixed(2),
         changeColor: (value) => value > 0 ? '#14ef14' : 'red'
     },
     {
-        id: 'percent_change_30d', label: '24H % Change (USD)',
+        id: 'percent_change_30d', label: '30d % Change (USD)',
         minWidth: 100, format: (value) => value.toFixed(2),
         changeColor: (value) => value > 0 ? '#14ef14' : 'red'
     },
@@ -62,6 +66,10 @@ const useStyles = makeStyles({
         width: '100%',
         color: 'white'
     },
+    checkboxmenu: {
+        color: 'white',
+        width: 'max-content'
+    },
     container: {
         maxHeight: 500,
     },
@@ -71,14 +79,28 @@ const useStyles = makeStyles({
 const CoinsTable = () => {
     const classes = useStyles();
 
-    // const [showColumn,setShowColumn]=useState(Array(15).fill(true));
-    // handleMetricsCheckboxClick=(e)=>{
-    //     setShowColumn(showColumn=>{
-    //         let mutatedShowColumn = showColumn;
-    //         mutatedShowColumn[e.index]=!mutatedShowColumn[e.index];
-    //         return mutatedShowColumn;
-    //     })
-    // }
+    const [metricsCount, setMetricCount] = useState(14);
+    const [showColumn, setShowColumn] = useState(Array(15).fill(true));
+    const handleMetricsCheckboxChange = (e) => {
+        e.preventDefault();
+        console.log(e);
+        let mutatedShowColumn = [...showColumn];
+        mutatedShowColumn[e.target.name] = !mutatedShowColumn[e.target.name];
+        if (mutatedShowColumn[e.target.name]) {
+            setMetricCount(metricsCount => metricsCount + 1);
+        } else {
+            setMetricCount(metricsCount => metricsCount - 1);
+        }
+        console.log(mutatedShowColumn);
+        setShowColumn(mutatedShowColumn);
+    }
+
+    const [showCheckBoxMenu, setShowCheckBoxMenu] = useState(false);
+    const handleShowCheckBoxMenuToggle = (e) => {
+        e.preventDefault();
+        setShowCheckBoxMenu(showCheckBoxMenu => !showCheckBoxMenu);
+    }
+
 
 
     const [page, setPage] = useState(0);
@@ -110,7 +132,41 @@ const CoinsTable = () => {
         <div className='coins-table-wrapper'>
             <section style={{ backgroundColor: '', color: 'white', height: '40px' }}>
                 <center>COINS</center>
+                <div style={{ float: 'right', backgroundColor: 'rgb(17,18,28)', color: 'white' }}>
+                    <Button variant="contained" color="primary" onClick={handleShowCheckBoxMenuToggle}>
+                        {metricsCount} of 14 Metrics
+                    </Button>
+                </div>
             </section>
+            <div style={{ float: 'right' }}>
+                <Paper className={`${classes.checkboxmenu} metrics-check-box-menu`}  >
+                    {showCheckBoxMenu && <div >
+                        <FormGroup col style={{
+                            backgroundColor: 'rgb(34 35 49)',
+                            color: 'white'
+                        }}>
+                            {columns.map((col, idx) => {
+                                if (idx == 0) return;
+                                return (
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={showColumn[idx]}
+                                                onClick={handleMetricsCheckboxChange}
+                                                name={idx}
+                                                color="secondary"
+                                            />
+                                        }
+
+                                        label={col.label}
+                                    />
+                                )
+                            })}
+                        </FormGroup>
+
+                    </div>}
+                </Paper>
+            </div>
             <Paper className={`${classes.root}`} >
 
                 <TableContainer className={`${classes.container}`}>
@@ -118,7 +174,7 @@ const CoinsTable = () => {
                         <TableHead >
                             <TableRow>
                                 {columns.map((column, idx) => (
-                                    <TableCell
+                                    showColumn[idx] && <TableCell
                                         key={column.id}
                                         align={column.align}
                                         style={{
@@ -140,7 +196,7 @@ const CoinsTable = () => {
                                         {columns.map((column, idx) => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell key={column.id} align={column.align}
+                                                showColumn[idx] && <TableCell key={column.id} align={column.align}
                                                     style={{ backgroundColor: 'rgb(17,18,28)', color: column.changeColor ? column.changeColor(value) : 'white' }}
                                                     className={idx === 0 ? "coin-table-sticky-col" : ""}
                                                 >
