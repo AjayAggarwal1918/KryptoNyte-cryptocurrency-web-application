@@ -1,12 +1,18 @@
-import React from 'react'; 
+// EXTERNAL DEPENDENCIES
+import React from 'react';
+
+//  COMPONENT IMPORTS
+import CoinsTable from './coins-table/coins-table';
+import CoinsCharts from './coins-charts/coins-charts';
 
 
 const Coins=()=>{
     return (
-        <div>
-            <p> This is the coins route </p>
-        </div>
-    ); 
+        <>
+            <CoinsCharts/>
+            <CoinsTable/>
+        </>
+    )
 }; 
 
 export default Coins; 
