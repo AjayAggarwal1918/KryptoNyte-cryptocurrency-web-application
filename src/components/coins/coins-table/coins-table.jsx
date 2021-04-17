@@ -146,7 +146,7 @@ const CoinsTable = () => {
                             color: 'white'
                         }}>
                             {columns.map((col, idx) => {
-                                if (idx == 0) return;
+                                if (idx === 0) return;
                                 return (
                                     <FormControlLabel
                                         control={
@@ -157,7 +157,6 @@ const CoinsTable = () => {
                                                 color="secondary"
                                             />
                                         }
-
                                         label={col.label}
                                     />
                                 )

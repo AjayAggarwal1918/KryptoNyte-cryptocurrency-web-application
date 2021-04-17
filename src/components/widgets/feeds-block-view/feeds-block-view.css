@@ -4,11 +4,11 @@
     box-sizing: border-box;
 }
 
-.feeds-content-list{
-    background-color: #01010eea;
+.feeds-content-blocks{
     width:100%;  
     color:white; 
     margin-top:2rem; 
     border-radius: 1rem;
+    padding-left:1rem; 
 }
 
