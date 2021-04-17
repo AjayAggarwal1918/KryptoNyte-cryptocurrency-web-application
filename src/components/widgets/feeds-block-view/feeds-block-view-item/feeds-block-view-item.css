@@ -1,0 +1,91 @@
+*{
+    padding:0; margin:0; 
+    box-sizing: border-box;
+}
+
+.feeds-content_blocks-link{
+    text-decoration: none;
+}
+
+.feeds-content_blocks-item{
+    position:relative; 
+    display: inline-block;
+    width: 100%;
+    border-radius: .5rem;
+    background-color: #01010eea;
+    border:.005rem solid #010111ea;
+    padding: .5rem 1rem;
+    margin-bottom: 1rem; 
+}
+
+.feeds-content_blocks-item:hover{
+    background-color: rgba(19, 16, 26, 0.904);
+    border:.005rem solid rgb(177, 168, 168);
+}
+
+
+
+.feeds-content_blocks-logo{
+    margin: .8rem 0 1rem 0;
+    color: grey; 
+}
+
+.feeds-content_blocks-logo_logo{
+    position: relative;
+    display: inline-block;
+    margin-right: 2rem;
+    width:2rem; 
+    height:2rem; 
+    left:.5rem;  
+}
+
+.feeds-content_blocks-logo_name{
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: rgb(204, 179, 236); 
+}
+
+.feeds-content_blocks-logo_time{
+    display: inline-block;
+    color: rgb(158, 159, 240); 
+    font-size: 1.2rem;
+    position: relative;
+    float: right;
+    top: .7rem;
+    right:.5rem; 
+}
+
+
+
+.feeds-content_blocks-body{
+    color: rgb(225, 225, 233); 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
+    font-size: 1.2rem;
+    margin: .5rem 0;
+    padding: 0 .5rem; 
+    line-height: 1.5rem; 
+}
+
+
+
+.feeds-content_blocks-shares{
+    margin: 1.5rem 0 .8rem 0; 
+    color: grey; 
+    font-size: .8rem;
+    line-height: 1.2rem;
+}
+
+.feeds-content_blocks-shares_socialscores{
+    display: inline-block;
+    margin-right: 2.5rem; 
+}
+
+.feeds-content_blocks-shares-retweets{
+    display: inline-block;
+    margin-right: 2.5rem; 
+}
+
+.feeds-content_blocks-shares-likes{
+    display: inline-block;
+}

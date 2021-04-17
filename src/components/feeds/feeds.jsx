@@ -12,9 +12,9 @@ import './feeds.css';
 const Feeds=()=>{
 
     const [feedsState,setFeedsState]=useState({
-        view:'list',
+        view:'block',
         data:[],
-        count:20
+        count:30
     }); 
 
     useEffect(()=>{
@@ -107,15 +107,9 @@ const Feeds=()=>{
             </div>
             <div className="feeds-content-wrapper">
                 {feedsState.view==='list'?
-                    <FeedsListView 
-                        data={feedsState.data}
-                        count={feedsState.count}
-                    />
+                    <FeedsListView data={feedsState.data}   />
                     :
-                    <FeedsBlockView
-                        data={feedsState.data}
-                        count={feedsState.count} 
-                    />
+                    <FeedsBlockView data={feedsState.data}  />
                 }
             </div>
             <div 
@@ -129,16 +123,3 @@ const Feeds=()=>{
 }; 
 
 export default Feeds; 
-
-
-
-
-
-
-
-
-
-
-
-
-
