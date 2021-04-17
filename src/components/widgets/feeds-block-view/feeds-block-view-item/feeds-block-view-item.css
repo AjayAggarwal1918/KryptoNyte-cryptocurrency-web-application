@@ -35,10 +35,8 @@
     display: inline-block;
     margin-right: 2rem;
     width:2rem; 
-    height:2rem;
-    top:-1rem; 
+    height:2rem; 
     left:.5rem;  
-    background-color: rgb(186, 185, 212);
 }
 
 .feeds-content_blocks-logo_name{

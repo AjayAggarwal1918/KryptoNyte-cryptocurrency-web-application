@@ -17,8 +17,13 @@ const FeedsBlockViewItem=({item,index})=>{
             >
                 <div className="feeds-content_blocks-item" key={index}>
                     <div className="feeds-content_blocks-logo">
-                        <div className="feeds-content_blocks-logo_logo">
-                            logo
+                        <div className={`feeds-content_blocks-logo_logo`}>
+                            <img 
+                                src={`https://dkhpfm5hits1w.cloudfront.net/${item.name.toString().toLowerCase()}.png`}
+                                width="30rem"
+                                height="30rem"
+                                alt="bitcoin(s) img"
+                            />
                         </div>
                         <div className="feeds-content_blocks-logo_name">
                             {item.name}
