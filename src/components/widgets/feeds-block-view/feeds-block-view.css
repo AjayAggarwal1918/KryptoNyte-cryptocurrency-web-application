@@ -12,3 +12,8 @@
     padding-left:1rem; 
 }
 
+.feeds-content_blocks-column{
+    display: inline-block;
+    width: 23%;
+    margin: 0 .6rem;  
+}

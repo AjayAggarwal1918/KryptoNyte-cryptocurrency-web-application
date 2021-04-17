@@ -12,7 +12,7 @@ import './feeds.css';
 const Feeds=()=>{
 
     const [feedsState,setFeedsState]=useState({
-        view:'list',
+        view:'block',
         data:[],
         count:20
     }); 

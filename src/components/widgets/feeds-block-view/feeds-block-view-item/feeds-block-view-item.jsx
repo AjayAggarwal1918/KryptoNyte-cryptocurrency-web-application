@@ -4,7 +4,7 @@ import React from 'react';
 import './feeds-block-view-item.css'; 
 
 // JS FILES 
-import { fullTimeConverter } from '../../../../config'; 
+import { timeConverter } from '../../../../config'; 
 
 
 const FeedsBlockViewItem=({item,index})=>{
@@ -17,31 +17,31 @@ const FeedsBlockViewItem=({item,index})=>{
             >
                 <div className="feeds-content_blocks-item" key={index}>
                     <div className="feeds-content_blocks-logo">
-                        <span className="feeds-content_blocks-logo_logo">
+                        <div className="feeds-content_blocks-logo_logo">
                             logo
-                        </span>
-                        <span className="feeds-content_blocks-logo_name">
+                        </div>
+                        <div className="feeds-content_blocks-logo_name">
                             {item.name}
                             <br/>
                             {item.symbol}
-                        </span>
-                        <span className="feeds-content_blocks-logo_time">
-                            {fullTimeConverter(item.time)}
-                        </span>
+                        </div>
+                        <div className="feeds-content_blocks-logo_time">
+                            {timeConverter(item.time)}
+                        </div>
                     </div>
                     <div className="feeds-content_blocks-body">
                             {item.body}
                     </div>
                     <div className="feeds-content_blocks-shares">
-                        <span className="feeds-content_blocks-shares_socialscores">
-                            Social Scores  {item.social_score}
-                        </span>
-                        <span className="feeds-content_blocks-shares-retweets">
-                            Shares  {item.retweets}
-                        </span>
-                        <span className="feeds-content_blocks-shares-likes">
-                            Likes  {item.likes}
-                        </span>
+                        <div className="feeds-content_blocks-shares_socialscores">
+                            Social Scores :<br/>{item.social_score}
+                        </div>
+                        <div className="feeds-content_blocks-shares-retweets">
+                            Shares :<br/>{item.retweets}
+                        </div>
+                        <div className="feeds-content_blocks-shares-likes">
+                            Likes :<br/>{item.likes}
+                        </div>
                     </div>
                 </div>
             </a>

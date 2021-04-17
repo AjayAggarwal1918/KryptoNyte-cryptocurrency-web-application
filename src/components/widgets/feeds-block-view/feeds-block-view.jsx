@@ -14,17 +14,62 @@ const FeedsBlockView=(props)=>{
         return (
             <>
                 <div className="feeds-content-blocks">
-                    {
-                        props.data.map((item,index)=>{
-                            return (
-                                <FeedsBlockViewItem
-                                    item={item}
-                                    index={index}
-                                    key={index}
-                                />
-                            ); 
-                        }) 
-                    } 
+                    <div className="feeds-content_blocks-column">
+                        {      
+                            props.data.map((item,index)=>{
+                                if(index%4!==0) return null; 
+                                return (
+                                    <FeedsBlockViewItem
+                                        item={item}
+                                        index={index}
+                                        key={index}
+                                    />
+                                ); 
+                            }) 
+                        } 
+                    </div>
+                    <div className="feeds-content_blocks-column">
+                        {      
+                            props.data.map((item,index)=>{
+                                if(index%4!==1) return null; 
+                                return (
+                                    <FeedsBlockViewItem
+                                        item={item}
+                                        index={index}
+                                        key={index}
+                                    />
+                                ); 
+                            }) 
+                        } 
+                    </div>
+                    <div className="feeds-content_blocks-column">
+                        {      
+                            props.data.map((item,index)=>{
+                                if(index%4!==2) return null; 
+                                return (
+                                    <FeedsBlockViewItem
+                                        item={item}
+                                        index={index}
+                                        key={index}
+                                    />
+                                ); 
+                            }) 
+                        } 
+                    </div>
+                    <div className="feeds-content_blocks-column">
+                        {      
+                            props.data.map((item,index)=>{
+                                if(index%4!==3) return null; 
+                                return (
+                                    <FeedsBlockViewItem
+                                        item={item}
+                                        index={index}
+                                        key={index}
+                                    />
+                                ); 
+                            }) 
+                        } 
+                    </div>
                 </div>
             </>
         ); 
