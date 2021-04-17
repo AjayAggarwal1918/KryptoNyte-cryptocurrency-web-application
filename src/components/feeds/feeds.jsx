@@ -14,7 +14,7 @@ const Feeds=()=>{
     const [feedsState,setFeedsState]=useState({
         view:'block',
         data:[],
-        count:20
+        count:30
     }); 
 
     useEffect(()=>{

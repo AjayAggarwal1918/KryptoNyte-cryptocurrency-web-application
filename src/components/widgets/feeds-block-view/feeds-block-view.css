@@ -9,11 +9,27 @@
     color:white; 
     margin-top:2rem; 
     border-radius: 1rem;
-    padding-left:1rem; 
+    padding-left:.5rem; 
 }
 
 .feeds-content_blocks-column{
+    position: relative; 
     display: inline-block;
-    width: 23%;
+    width: 22%;
     margin: 0 .6rem;  
+}
+
+.feeds-content_blocks-column2{
+    left: 27rem; 
+    position: absolute; 
+}
+
+.feeds-content_blocks-column3{
+    left: 49rem; 
+    position: absolute; 
+}
+
+.feeds-content_blocks-column4{
+    left: 71rem; 
+    position: absolute; 
 }
