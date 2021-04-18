@@ -3,7 +3,7 @@ import React,{ useEffect,useState } from 'react';
 import Axios from 'axios'; 
 
 // COMPONENT IMPORTS 
-import ButtonList from './button-list/button-list'; 
+import ButtonList from '../widgets/button-list/button-list'; 
 import GraphTypeB from '../widgets/graph-type-B/graph-type-B';
 
 // JS FILES 
@@ -79,7 +79,7 @@ const Compare=(props)=>{
 
 
     return (
-        <div className="compare-wrapper" style={{background:' rgb(34, 31, 48)'}}>
+        <div className="compare-wrapper" style={{background:'#01010eea'}}>
             <div className="compare-logo-wrapper">
                 logo here 
             </div>

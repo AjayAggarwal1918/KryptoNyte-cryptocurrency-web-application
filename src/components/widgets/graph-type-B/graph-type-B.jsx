@@ -30,7 +30,7 @@ const GraphTypeB=(props)=>{
             <Tooltip 
                 offset={2}
                 contentStyle={{
-                                background:'rgb(34, 31, 48)'
+                                background:'#01010eea'
                             }}
                 labelStyle={{
                                 color:'white'
