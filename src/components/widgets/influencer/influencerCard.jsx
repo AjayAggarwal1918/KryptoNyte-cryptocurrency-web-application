@@ -22,7 +22,7 @@ function influencerCard(props) {
             <div className="influncer-card-number">{props.idx + 1}</div>
           </Grid>
           <Grid item xs={3}>
-            <img src={profile_image} alt="profile picture" />
+            <img src={profile_image} alt="profile_picture" />
           </Grid>
           <Grid container direction="column" spacing={1} xs={6}>
             <Grid item>
@@ -38,6 +38,7 @@ function influencerCard(props) {
             <img
               src={banner_image}
               className="influencer-card-img"
+              alt="banner_image"
             />
           </Grid>
           <Grid container className="influencer-card-footer" spacing={0.7}>
