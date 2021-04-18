@@ -1,0 +1,29 @@
+.influencers-heading{
+  color: aliceblue;
+  font-size: 5rem;
+}
+
+.influencer-paper{
+  color: white  !important;
+  background-color: #11121b !important;
+  max-height: min-content;
+  position: fixed;
+  padding: 10px;  
+}
+
+
+.influencer-container{
+  overflow: hidden;
+}
+
+.influencer-paper-img{
+  width: 99%;
+}
+
+.influencer-social-acc-name{
+  text-transform: capitalize;
+  font-weight: bolder;
+}
+.influencer-social-handle{
+  color: slategray;
+}
