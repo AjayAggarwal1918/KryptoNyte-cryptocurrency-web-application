@@ -1,6 +1,7 @@
 // DEPENDENCY IMPORTS
 import React,{ useState } from 'react'; 
 import FontAwesome from 'react-fontawesome'; 
+import { Link } from 'react-router-dom'; 
 
 // COMPONENT IMPORTS 
 import SearchSlider from '../widgets/search-slider/search-slider';
@@ -89,7 +90,11 @@ const Header=()=>{
                 {
                     navItems.map((item,index)=>{
                         return (
-                            <a className="header-side_nav-list_item_link" key={index} href={item.link}>
+                            <Link 
+                                to={item.link}
+                                className="header-side_nav-list_item_link" 
+                                key={index} 
+                            >
                                 <li 
                                     onMouseEnter={(event)=>handleMouseEvent(event,true)} 
                                     onMouseLeave={(event)=>handleMouseEvent(event,false)}
@@ -114,7 +119,7 @@ const Header=()=>{
                                         {item.name}
                                     </span>
                                 </li> 
-                            </a>                   
+                            </Link>                   
                         )
                     })
                 }

@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 import Trend from 'react-trend';  
+
+// CSS FILES 
 import './graph-type-A.css'; 
 
 const GraphTypeA=(props)=>{
@@ -23,8 +26,8 @@ const GraphTypeA=(props)=>{
 
 
     return (
-        <a 
-            href={`/compare/${props.link}`}
+        <Link 
+            to={`/compare/${props.link}`}
             title={props.label}
             onMouseEnter={(event)=>props.handleOverlay(event,true)}
             onMouseLeave={(event)=>props.handleOverlay(event,false)}        
@@ -75,7 +78,7 @@ const GraphTypeA=(props)=>{
                     />
                 </div>
             </div>
-        </a>
+        </Link>
     );
 }; 
 
