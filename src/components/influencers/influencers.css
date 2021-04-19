@@ -5,10 +5,10 @@
 
 .influencer-paper{
   color: white  !important;
-  background-color: #11121b !important;
+  background-color: rgb(3 3 16) !important;
   max-height: min-content;
   position: fixed;
-  padding: 10px;  
+  padding: 10px;
 }
 
 
