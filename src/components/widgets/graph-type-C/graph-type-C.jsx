@@ -4,7 +4,7 @@ const CanvasJSStockChart=CanvasJSReact.CanvasJSStockChart;
 // const CanvasJS=CanvasJSReact.CanvasJS;
 
 
-const GraphTypeC=({ dataPoints1,dataPoints2,dataPoints3,sliderMin,sliderMax,isLoaded})=>{
+const GraphTypeC=({ dataPoints1,dataPoints2,dataPoints3,sliderMin,sliderMax,isLoaded,graphType,socialMatrix })=>{
 
     const containerProps={
         width: "95%",
@@ -19,7 +19,7 @@ const GraphTypeC=({ dataPoints1,dataPoints2,dataPoints3,sliderMin,sliderMax,isLo
         animationEnabled: true,
         animationDuration: 3000,
         subtitles:[{
-            text: "Price-Volume Trend",
+            text: `Price--${socialMatrix.label}  Trend`,
             horizontalAlign:"left",
             fontColor:"#b90dee"
         }],
@@ -49,7 +49,7 @@ const GraphTypeC=({ dataPoints1,dataPoints2,dataPoints3,sliderMin,sliderMax,isLo
                     }
                 },
                 axisY: {
-                    title: "Litecoin Price",
+                    title: "Price",
                     prefix: "$",
                     tickLength: 0,
                     lineThickness: 0
@@ -87,7 +87,7 @@ const GraphTypeC=({ dataPoints1,dataPoints2,dataPoints3,sliderMin,sliderMax,isLo
                     shared: true
                 },
                 data: [{
-                    name: "Price",
+                    name: "Price (in USD)",
                     height: "5rem",
                     yValueFormatString: "$#,###.##",
                     type: "spline",
@@ -95,17 +95,48 @@ const GraphTypeC=({ dataPoints1,dataPoints2,dataPoints3,sliderMin,sliderMax,isLo
                     lineThickness:1,
                     dataPoints : dataPoints2
                 }]
-            }]
+            },
+            {
+                height: 100,
+                axisX: {
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                axisY: {
+                    title: `${socialMatrix.label}`,
+                    tickLength: 0
+                },
+                toolTip: {
+                    shared: true
+                },
+                data: [{
+                    name: `${socialMatrix.label}`,
+                    yValueFormatString: "#,###.##",
+                    type: "column",
+                    dataPoints : dataPoints3
+                }]
+            }
+        ]
     };
+
+    (()=>{
+        let newCharts=options.charts.filter((item,index)=>{
+            return (item.data[0].type==='column' || item.data[0].type===`${graphType}`)              // perform string checking 
+        })
+        options.charts=newCharts; 
+    })(); 
+
 
     return (
         <>
             {
-                isLoaded &&   <CanvasJSStockChart 
-                                        containerProps={containerProps} 
-                                        options={options}
-                                        /* onRef = {ref => this.chart = ref} */
-                                    />
+                isLoaded &&     <CanvasJSStockChart 
+                                    containerProps={containerProps} 
+                                    options={options}
+                                    /* onRef = {ref => this.chart = ref} */
+                                />
             }
         </>
     );

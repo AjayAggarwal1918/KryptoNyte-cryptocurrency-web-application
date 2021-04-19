@@ -9,24 +9,32 @@ import ButtonList from '../widgets/button-list/button-list';
 import './coin.css'; 
 
 
-const Coin=()=>{
+const Coin=(props)=>{
 
     const [coinState,setCoinState]=useState({
+        data:{},
+        graphType:'spline',
         dataPoints1: [],
         dataPoints2: [], 
         dataPoints3: [],
+        socialMatrix:{
+            label:'Average Sentiment',
+            id:'average_sentiment'
+        },
         sliderMin:null,
         sliderMax:null,
         isLoaded: false
     }); 
 
     useEffect(()=>{
-        if(coinState.dataPoints1.length===0){
-            Axios.get(`https://api.lunarcrush.com/v2?data=assets&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&interval=day&data_points=365&symbol=BTC`)
+        console.log(props.match.params.symbol,coinState.data);                // coin id  
+
+        if(coinState.dataPoints3.length===0){                                           // preventing infinie loop 
+            if(coinState.dataPoints1.length===0){                                       // visiting the website first time
+                Axios.get(`https://api.lunarcrush.com/v2?data=assets&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&interval=day&data_points=365&symbol=${props.match.params.symbol.toString().toUpperCase()}`)
                 .then(result=>{
-                    console.log(result.data.data[0]); 
-                    const dps1=[],dps2=[],dps3=[];
-                    let sliderMin=null,sliderMax=null; 
+                    const dps1=[],dps2=[],dps3=[];  let sliderMin=null,sliderMax=null; 
+
                     result.data.data[0].timeSeries.forEach((item,index)=>{
                         const time=new Date(item.time*1000); 
                         if(index===200) sliderMin=time; 
@@ -41,12 +49,12 @@ const Coin=()=>{
                                 Number(item.close)
                             ]
                         });
-                        dps2.push({x: time, y: Number(item.open)});
-                        dps3.push({x: time, y: Number(item.close)});
+                        dps2.push({x: time, y: Number(item.price)});
+                        dps3.push({x: time, y: Number(item[coinState.socialMatrix.id])});
                     })
-                    console.log({dps1,dps2,dps3}); 
-
+                    
                     return {
+                        data:result.data.data[0],
                         dps1,
                         dps2,
                         dps3,
@@ -56,33 +64,67 @@ const Coin=()=>{
                 })
                 .then(result=>{
                     let updatedCoinState={
-                        dataPoints1:[...coinState.dataPoints1],
-                        dataPoints2:[...coinState.dataPoints2],
-                        dataPoints3:[...coinState.dataPoints3],
-                        isLoaded:coinState.isLoaded,
-                        sliderMin:coinState.sliderMin,
-                        sliderMax:coinState.sliderMax
-                    }
-                    updatedCoinState={
+                        data:{...result.data},
                         dataPoints1:[...result.dps1],
                         dataPoints2:[...result.dps2],
                         dataPoints3:[...result.dps3],
                         sliderMin:result.sliderMin,
                         sliderMax:result.sliderMax,
-                        isLoaded:true
+                        isLoaded:true,
+                        graphType:coinState.graphType,
+                        socialMatrix:{...coinState.socialMatrix}
                     }
                     setCoinState(updatedCoinState)
                 })
                 .catch(error=>{
                     console.error(error);
                 }); 
+            }
+            else{
+                const dps3=[];
+                coinState.data.timeSeries.forEach((item,index)=>{
+                    const time=new Date(item.time*1000); 
+                    dps3.push({x: time, y: Number(item[coinState.socialMatrix.id])});
+                })
+
+                let updatedCoinState={
+                    data:{...coinState.data},
+                    dataPoints1:[...coinState.dataPoints1],
+                    dataPoints2:[...coinState.dataPoints2],
+                    dataPoints3:[...dps3],
+                    sliderMin:coinState.sliderMin,
+                    sliderMax:coinState.sliderMax,
+                    isLoaded:true,
+                    graphType:coinState.graphType,
+                    socialMatrix:{...coinState.socialMatrix}
+                }
+                setCoinState(updatedCoinState)
+            }
         }
     })
 
 
 
-    const handleTopicClick=(event,pos)=>{ 
-        console.log(event.target.title,event.target.id,pos); 
+    const handleTopicClick=(event,pos)=>{
+        let updatedCoinState={
+            data:{...coinState.data},
+            dataPoints1:[...coinState.dataPoints1],
+            dataPoints2:[...coinState.dataPoints2],
+            dataPoints3:[...coinState.dataPoints3],
+            isLoaded:coinState.isLoaded,
+            sliderMin:coinState.sliderMin,
+            sliderMax:coinState.sliderMax,
+            graphType:coinState.graphType,
+            socialMatrix:{...coinState.socialMatrix}
+        }
+        const updatedSocialMatrix={
+            label:event.target.title,
+            id:event.target.id
+        }
+        updatedCoinState['socialMatrix']={...updatedSocialMatrix};
+        updatedCoinState['dataPoints3']=[];
+        updatedCoinState['isLoaded']=false;  
+        setCoinState(updatedCoinState); 
     };
 
 
@@ -90,10 +132,68 @@ const Coin=()=>{
         <div className="coin-wrapper">
             <div className="coin-heading-wrapper">
                 <div className="coin-heading_logo">
-
+                    <div className="coin-heading_logo-coin" title="Coin">
+                        Coin
+                    </div>
+                    <div className="coin-heading_logo-logo" title={coinState.data.name}>
+                        <img 
+                            src={`https://dkhpfm5hits1w.cloudfront.net/${coinState.data.name?coinState.data.name.toString().toLowerCase():'bitcoin'}.png`}
+                            width="100rem"
+                            height="100rem"
+                            alt="bitcoin(s) img"
+                            title={coinState.data.name}
+                        />
+                    </div>
+                    <div className="coin-heading_logo-name" title={coinState.data.name}>
+                        {coinState.data.name}/{coinState.data.symbol}
+                    </div>
                 </div>
                 <div className="coin-heading_info">
-
+                    <div className="coin-heading_info-details coin-heading_info-price">
+                        Price<br/>
+                        <span className="coin-heading_info-price_1">
+                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        </span><br/>
+                        <span className="coin-heading_info-price_2">
+                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        </span>
+                    </div>
+                    <div className="coin-heading_info-details">
+                        % Change<br/>
+                        <span className="coin-heading_info-price_1">
+                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        </span><br/>
+                        <span className="coin-heading_info-price_2">
+                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        </span>
+                    </div>
+                    <div className="coin-heading_info-details">
+                        Market Cap<br/>
+                        <span className="coin-heading_info-price_1">
+                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        </span><br/>
+                        <span className="coin-heading_info-price_2">
+                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        </span>
+                    </div>              
+                    <div className="coin-heading_info-details">
+                        Volume<br/>
+                        <span className="coin-heading_info-price_1">
+                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        </span><br/>
+                        <span className="coin-heading_info-price_2">
+                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        </span>
+                    </div>             
+                    <div className="coin-heading_info-details">
+                        Sentiment<br/>
+                        <span className="coin-heading_info-price_1">
+                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        </span><br/>
+                        <span className="coin-heading_info-price_2">
+                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        </span>
+                    </div>
                 </div>
             </div>
             <div className="coin-graph-wrapper">
@@ -103,6 +203,7 @@ const Coin=()=>{
                             label="Social Matrices Available"
                             clear={false}
                             position='left'
+                            exclude={[4,17,18]}
                     />
                 </div>
                 <div className="coin-graph-graph_typeC">
@@ -119,10 +220,4 @@ const Coin=()=>{
 }; 
 
 export default Coin; 
-
-
-
-
-
-
 

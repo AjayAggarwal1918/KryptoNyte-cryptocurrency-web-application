@@ -11,24 +11,82 @@
 
 .coin-heading-wrapper{
     background-color:#01010eea;
-    height:20rem; 
     border-radius: 1rem;
     margin-bottom: 2rem;
 }
 
+
 .coin-heading_logo{
-    height: 70%;
-    background-color: blue;
     border-bottom: grey 1px solid;
-    border-radius: 1rem;
+    border-radius: 1rem 1rem 0 0;
 }
 
-.coin-heading_info{
-    height: 30%;
-    background-color: yellow;
-    border-top: grey 1px solid; 
-    border-radius: 1rem; 
+.coin-heading_logo-coin{
+    color:white; 
+    font-size: 2.5rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-left:2rem; 
+    padding-top:1rem; 
 }
+
+.coin-heading_logo-logo{
+    cursor: pointer;
+    padding: .5rem 0 1rem 2rem;
+    display: inline-block; 
+}
+
+.coin-heading_logo-name{
+    cursor: pointer;
+    position: relative;
+    top:-2rem; 
+    color:rgb(218, 62, 218); 
+    font-size: 1.7rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-left: 2rem;  
+    display: inline-block;
+}
+
+
+.coin-heading_info{
+    border-top: grey 1px solid; 
+    border-radius: 0 0 1rem 1rem;
+    padding-left: 2rem;  
+}
+
+.coin-heading_info-details{
+    padding: 1rem 0 1.5rem 1rem;
+    display: inline-block;
+    font-size: 1rem;
+    width:13rem; 
+    color:rgba(197, 202, 206, 0.863); 
+    margin-right: 2rem;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.coin-heading_info-price_1{
+    color: aliceblue;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5rem;
+}
+.coin-heading_info-price_2{
+    color: rgb(171, 160, 204);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

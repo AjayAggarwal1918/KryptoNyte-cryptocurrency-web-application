@@ -90,6 +90,7 @@ const Compare=(props)=>{
                         label="LEFT DIMENSION"
                         clear={false}
                         position='left'
+                        exclude={[]}
                     />
                 </div>
                 <div className="compare-graph-wrapper">
@@ -106,6 +107,7 @@ const Compare=(props)=>{
                         label="RIGHT DIMENSION" 
                         clear={true}
                         position='right'
+                        exclude={[]}
                     />
                 </div>
             </div>
