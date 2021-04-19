@@ -143,7 +143,8 @@ const CoinsTable = () => {
                     {showCheckBoxMenu && <div >
                         <FormGroup col style={{
                             backgroundColor: 'rgb(34 35 49)',
-                            color: 'white'
+                            color: 'white',
+                            padding: '5px'
                         }}>
                             {columns.map((col, idx) => {
                                 if (idx === 0) return;
