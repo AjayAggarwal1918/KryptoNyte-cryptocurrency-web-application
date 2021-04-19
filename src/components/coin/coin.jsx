@@ -49,7 +49,7 @@ const Coin=(props)=>{
                                 Number(item.close)
                             ]
                         });
-                        dps2.push({x: time, y: Number(item.price)});
+                        dps2.push({x: time, y: Number(item.close)});
                         dps3.push({x: time, y: Number(item[coinState.socialMatrix.id])});
                     })
                     
@@ -128,6 +128,15 @@ const Coin=(props)=>{
     };
 
 
+    const graphToggler=(event)=>{
+        let updatedCoinState={...coinState};
+        if(coinState.graphType==='spline')  updatedCoinState['graphType']='candlestick'; 
+        else 
+        updatedCoinState['graphType']='spline'; 
+        setCoinState(updatedCoinState);
+    }
+
+
     return(
         <div className="coin-wrapper">
             <div className="coin-heading-wrapper">
@@ -137,7 +146,7 @@ const Coin=(props)=>{
                     </div>
                     <div className="coin-heading_logo-logo" title={coinState.data.name}>
                         <img 
-                            src={`https://dkhpfm5hits1w.cloudfront.net/${coinState.data.name?coinState.data.name.toString().toLowerCase():'bitcoin'}.png`}
+                            src={`https://dkhpfm5hits1w.cloudfront.net/${coinState.data.name?coinState.data.name.toString().split(' ')[0].toLowerCase():'bitcoin'}.png`}
                             width="100rem"
                             height="100rem"
                             alt="bitcoin(s) img"
@@ -149,54 +158,60 @@ const Coin=(props)=>{
                     </div>
                 </div>
                 <div className="coin-heading_info">
-                    <div className="coin-heading_info-details coin-heading_info-price">
-                        Price<br/>
-                        <span className="coin-heading_info-price_1">
-                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
-                        </span><br/>
-                        <span className="coin-heading_info-price_2">
-                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
-                        </span>
-                    </div>
                     <div className="coin-heading_info-details">
-                        % Change<br/>
-                        <span className="coin-heading_info-price_1">
-                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        Price<br/>
+                        <span className="coin-heading_info-1">
+                            ${coinState.data.price?coinState.data.price.toFixed(5):'N/A'}
                         </span><br/>
-                        <span className="coin-heading_info-price_2">
-                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        <span className="coin-heading_info-2">
+                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):'N/A'}BTC
                         </span>
                     </div>
                     <div className="coin-heading_info-details">
                         Market Cap<br/>
-                        <span className="coin-heading_info-price_1">
-                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        <span className="coin-heading_info-1">
+                            ${coinState.data.market_cap?coinState.data.market_cap:'N/A'}
                         </span><br/>
-                        <span className="coin-heading_info-price_2">
-                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        <span className="coin-heading_info-2">
+                            Rank {coinState.data.market_cap_rank?coinState.data.market_cap_rank:'N/A'}/2080
+                        </span>
+                    </div>
+                    <div className="coin-heading_info-details">
+                        Social<br/>
+                        <span className="coin-heading_info-1">
+                            News {coinState.data.news?coinState.data.news:'N/A'}
+                        </span><br/>
+                        <span className="coin-heading_info-2">
+                            YouTube {coinState.data.youtube?coinState.data.youtube:'N/A'}
                         </span>
                     </div>              
                     <div className="coin-heading_info-details">
                         Volume<br/>
-                        <span className="coin-heading_info-price_1">
-                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        <span className="coin-heading_info-1">
+                            ${coinState.data.volume?coinState.data.volume:'N/A'}
                         </span><br/>
-                        <span className="coin-heading_info-price_2">
-                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        <span className="coin-heading_info-2">
+                            Rank {coinState.data.volume_24h_rank?coinState.data.volume_24h_rank:'N/A'}/2080
                         </span>
                     </div>             
                     <div className="coin-heading_info-details">
                         Sentiment<br/>
-                        <span className="coin-heading_info-price_1">
-                            ${coinState.data.price?coinState.data.price.toFixed(2):0}
+                        <span className="coin-heading_info-1">
+                            Bearish {coinState.data.tweet_sentiment2?coinState.data.tweet_sentiment2:'N/A'}
                         </span><br/>
-                        <span className="coin-heading_info-price_2">
-                            ${coinState.data.price_btc?coinState.data.price_btc.toFixed(7):0}BTC
+                        <span className="coin-heading_info-2">
+                            Bullish {coinState.data.tweet_sentiment4?coinState.data.tweet_sentiment4:'N/A'}
                         </span>
                     </div>
                 </div>
             </div>
             <div className="coin-graph-wrapper">
+                <div 
+                    className="coin-graph-toggler"
+                    onClick={(event)=>graphToggler(event)}    
+                >
+                    {coinState.graphType==='spline'?'CandleStick':'Line'}
+                </div>
                 <div className="coin-graph-button_list">
                     <ButtonList 
                             handleTopicClick={(event,pos)=>handleTopicClick(event,pos)}
@@ -211,9 +226,6 @@ const Coin=(props)=>{
                         {...coinState}
                     />
                 </div>
-            </div>
-            <div className="coin-body-wrapper">
-
             </div>
         </div>
     ); 

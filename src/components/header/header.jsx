@@ -31,12 +31,6 @@ const Header=()=>{
             mouseOver:false
         },
         {
-            name:'EXCHANGES',
-            logo:'fa fa-exchange',
-            link:'/exchanges',
-            mouseOver:false
-        },
-        {
             name:'COMPARE',
             logo:'fa fa-binoculars',
             link:'/compare',
