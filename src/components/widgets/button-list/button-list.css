@@ -8,7 +8,7 @@
     display: inline-block;
     height: 35rem;
     overflow: hidden; 
-    background-color: rgb(34, 31, 48);
+    background-color:#01010eea;
     position: relative;  
     padding: 1rem 0rem; 
     overflow-y: scroll;
@@ -27,10 +27,6 @@
     display: inline-block;
     color:grey; 
     padding: 0rem .5rem 1rem .5rem; 
-}
-
-.button-list_label:hover{
-    background-color: rgb(34, 31, 48);
 }
 
 .button-list_items{

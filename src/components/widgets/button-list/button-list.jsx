@@ -19,7 +19,7 @@ const ButtonList=(props)=>{
                     {label:'Youtube Volume',id:'youtube'},
                     {label:'News Volume',id:'news'},
                     {label:'Spam Volume',id:'tweet_spam'},
-                    {label:'Market Volume',id:''},
+                    {label:'Market Volume',id:'volume'},
                     {label:'Market Cap',id:'market_cap'},
                     {label:'BTC Dominance',id:'btc_dominance'},
                     {label:'BTC Market Cap',id:'btc_market_cap'}
@@ -33,7 +33,12 @@ const ButtonList=(props)=>{
                     <label className="button-list_label">{props.label}</label>
                     {
                         topics.map((item,index)=>{
-                            if(!props.clear && item.label==='Clear') return null; 
+                            if(!props.clear && item.label==='Clear') return null;
+                            if(props.exclude.length!==0){
+                                for(let itr_i=0;itr_i<props.exclude.length;itr_i+=1){
+                                    if(props.exclude[itr_i]===index) return null; 
+                                }
+                            } 
                             return (
                                 <li
                                     title={item.label}

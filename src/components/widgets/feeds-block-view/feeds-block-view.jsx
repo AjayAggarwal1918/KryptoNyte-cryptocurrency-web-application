@@ -17,7 +17,7 @@ const FeedsBlockView=(props)=>{
                     <div className="feeds-content_blocks-column feeds-content_blocks-column1">
                         {      
                             props.data.map((item,index,arr)=>{
-                                if(index>(0.35*arr.length)) return null; 
+                                if(index>(0.38*arr.length)) return null; 
                                 return (
                                     <FeedsBlockViewItem
                                         item={item}
@@ -59,7 +59,7 @@ const FeedsBlockView=(props)=>{
                     <div className="feeds-content_blocks-column feeds-content_blocks-column4">
                         {      
                             props.data.map((item,index,arr)=>{
-                                if(index<=(0.7*arr.length)) return null; 
+                                if(index<=(0.68*arr.length)) return null; 
                                 return (
                                     <FeedsBlockViewItem
                                         item={item}

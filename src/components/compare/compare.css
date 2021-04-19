@@ -13,6 +13,7 @@
 .compare-content-wrapper{
     border-top: .05rem solid grey;
     border-bottom: .05rem solid grey;
+    background-color: #01010eea;
 }
 
 .button-list-wrapper{
