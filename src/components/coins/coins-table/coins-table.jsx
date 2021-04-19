@@ -1,5 +1,6 @@
 // EXTERNAL DEPENDENCIES 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -51,7 +52,7 @@ const columns = [
     },
     { id: 'volatility', label: 'Volatility', minWidth: 100, format: (value) => value.toFixed(4) },
     { id: 'social_volume', label: 'Social Volume', minWidth: 100 },//not sure if correct data from api is picked
-    { id: 'social_score_calc_24h', label: 'Social Engagement', minWidth: 100 },//not sure if correct data from api is picked
+    { id: 'social_score_calc_24h_previous', label: 'Social Engagement', minWidth: 100 },//not sure if correct data from api is picked
     { id: 'social_contributors', label: 'Social Contributors', minWidth: 100 },//not sure if correct data from api is picked
     {
         id: 'social_dominance', label: 'Social Dominance (%)',
@@ -71,7 +72,7 @@ const useStyles = makeStyles({
         width: 'max-content'
     },
     container: {
-        maxHeight: 500,
+        maxHeight: 800,
     },
 });
 
@@ -91,7 +92,6 @@ const CoinsTable = () => {
         } else {
             setMetricCount(metricsCount => metricsCount - 1);
         }
-        console.log(mutatedShowColumn);
         setShowColumn(mutatedShowColumn);
     }
 
@@ -104,7 +104,7 @@ const CoinsTable = () => {
 
 
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(20);
 
     //state to store data about coins from api
     const [rows, setRows] = useState([]);
@@ -199,7 +199,13 @@ const CoinsTable = () => {
                                                     style={{ backgroundColor: 'rgb(17,18,28)', color: column.changeColor ? column.changeColor(value) : 'white' }}
                                                     className={idx === 0 ? "coin-table-sticky-col" : ""}
                                                 >
-                                                    {column.format && typeof value === 'number' ? column.format(value) : value}
+                                                    {idx === 0 && <Link to={`/coin/${row['symbol']}`}> {value} </Link>}
+                                                    {column.format && typeof value === 'number' ? column.format(value) : idx ? value : ''}
+                                                    {idx === 0 && <Link to={`/coin/${row['symbol']}`}><img
+                                                        src={`https://dkhpfm5hits1w.cloudfront.net/${value.split(' ')[0].toLowerCase()}.png`}
+                                                        className="cryptocurrency-logo"
+                                                        atl=""
+                                                    /></Link>}
                                                 </TableCell>
                                             );
                                         })}
@@ -211,7 +217,7 @@ const CoinsTable = () => {
                 </TableContainer>
                 <TablePagination
                     style={{ backgroundColor: 'rgb(17,18,28)', color: 'white' }}
-                    rowsPerPageOptions={[5, 10, 20]}
+                    rowsPerPageOptions={[20, 30, 50]}
                     component="div"
                     // count={rows.length}
                     count={76}
