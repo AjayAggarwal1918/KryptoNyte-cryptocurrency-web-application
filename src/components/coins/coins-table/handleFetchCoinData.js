@@ -13,13 +13,14 @@ export const handleFetchCoinData = (page, perPage) => {
   const URL = `https://api.lunarcrush.com/v2?data=assets&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&symbol=${requestedCoins}`;
   return axios.get(URL)
     .then(response => {
+      console.log(response);
       const extractedData = response.data.data.map(({
-        name, galaxy_score, alt_rank, price, percent_change_24h, percent_change_7d, percent_change_30d, market_cap, volume_24h,
-        market_dominance, volatility, social_volume, social_score_calc_24h, social_contributors, social_dominance
+        name, symbol, galaxy_score, alt_rank, price, percent_change_24h, percent_change_7d, percent_change_30d, market_cap, volume_24h,
+        market_dominance, volatility, social_volume, social_score_calc_24h_previous, social_contributors, social_dominance
       }) => {
         return {
-          name, galaxy_score, alt_rank, price, percent_change_24h, percent_change_7d, percent_change_30d, market_cap, volume_24h,
-          market_dominance, volatility, social_volume, social_score_calc_24h, social_contributors, social_dominance
+          name, symbol, galaxy_score, alt_rank, price, percent_change_24h, percent_change_7d, percent_change_30d, market_cap, volume_24h,
+          market_dominance, volatility, social_volume, social_score_calc_24h_previous, social_contributors, social_dominance
         }
       })
       return extractedData;

@@ -39,7 +39,7 @@ const Influencers = () => {
                 <h1 className="influencers-heading">Influencers</h1>
             </Grid>
             <Grid item xs={6} className="influencers-container">
-                <Grid container justify="center" alignItems="center" spacing={1}>
+                <Grid container justify="center" alignItems="center" spacing={3}>
                     {
                         influencers.length ? influencers.map((influencer, idx) => {
                             return <InfluencerCard
@@ -64,7 +64,7 @@ const Influencers = () => {
             </Grid>
             <Grid item xs={6} className="influencer-container">
                 <Paper elevation={6} variant="outlined" className="influencer-paper">
-                    {influencers.length && (
+                    {influencers.length ? (
                         <Grid container direction="column" spacing={1}>
                             <Grid item xs={12}>
                                 <img src={influencers[influencer].banner_image} className="influencer-paper-img" alt="" />
@@ -114,7 +114,7 @@ const Influencers = () => {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>)
+                        </Grid>) : ''
                     }
                 </Paper>
             </Grid>

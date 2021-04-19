@@ -17,3 +17,9 @@
     float: right;
     right: 10px;
 }
+
+.cryptocurrency-logo{
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+}
