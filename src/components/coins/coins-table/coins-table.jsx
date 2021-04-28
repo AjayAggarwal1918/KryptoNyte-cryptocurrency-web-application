@@ -131,7 +131,7 @@ const CoinsTable = () => {
     return (
         <div className='coins-table-wrapper'>
             <section style={{ backgroundColor: '', color: 'white', height: '40px' }}>
-                <center>COINS</center>
+                <center>TABLE</center>
                 <div style={{ float: 'right', backgroundColor: 'rgb(17,18,28)', color: 'white' }}>
                     <Button variant="contained" color="primary" onClick={handleShowCheckBoxMenuToggle}>
                         {metricsCount} of 14 Metrics
@@ -205,7 +205,7 @@ const CoinsTable = () => {
                                                     {idx === 0 && <Link to={`/coin/${row['symbol']}`}><img
                                                         src={`https://dkhpfm5hits1w.cloudfront.net/${value.split(' ')[0].toLowerCase()}.png`}
                                                         className="cryptocurrency-logo"
-                                                        atl=""
+                                                        alt="cryptocurrency_image"
                                                     /></Link>}
                                                 </TableCell>
                                             );

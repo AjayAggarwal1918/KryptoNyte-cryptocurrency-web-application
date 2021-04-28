@@ -7,8 +7,17 @@
 .compare-logo-wrapper{
     display: block;
     width: 100%; 
-    height: 6rem; 
+    margin-bottom: 1rem;
+    text-align: center;
 }
+
+.compare-logo_heading{
+    color:rgb(149, 153, 196); 
+    font-size: 5rem;
+    font-weight: 900;
+    font-family: fantasy;
+}
+
 
 .compare-content-wrapper{
     border-top: .05rem solid grey;

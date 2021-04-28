@@ -20,13 +20,13 @@ const Dashboard = () => {
                     Welcome to
                 </center>
             </h1>
-            <h1 className="dashboard-logo-heading">Kryptonte</h1>
+            <h1 className="dashboard-logo-heading">KryptoNyte</h1>
 
             <Paper className="dashboard-background-paper dashboard-features-container">
                 <Container>
                     <Grid container direction="row" alignItems="center" spacing={4}>
                         <Grid item xs={5}>
-                            <Link to="/coins"> <img src={CoinsSS} className="dashboard-feature-ss"></img></Link>
+                            <Link to="/coins"> <img src={CoinsSS} className="dashboard-feature-ss" alt="coins_image"></img></Link>
                         </Grid>
                         <Grid item xs={7} >
                             <p className="dashboard-feature-text-heading">
@@ -63,7 +63,7 @@ const Dashboard = () => {
                                 </Button>
                         </Grid>
                         <Grid item xs={5}>
-                            <Link to="/compare"> <img src={CompareSS} className="dashboard-feature-ss"></img></Link>
+                            <Link to="/compare"> <img src={CompareSS} className="dashboard-feature-ss" alt="compare_image"></img></Link>
                         </Grid>
                     </Grid>
                 </Container>
@@ -72,7 +72,7 @@ const Dashboard = () => {
                 <Container>
                     <Grid container direction="row" alignItems="center" spacing={4}>
                         <Grid item xs={5}>
-                            <Link to="/feeds"> <img src={FeedsSS} className="dashboard-feature-ss"></img></Link>
+                            <Link to="/feeds"> <img src={FeedsSS} className="dashboard-feature-ss" alt="feeds_image"></img></Link>
                         </Grid>
                         <Grid item xs={7} >
                             <p className="dashboard-feature-text-heading">
@@ -109,7 +109,7 @@ const Dashboard = () => {
                                 </Button>
                         </Grid>
                         <Grid item xs={5}>
-                            <Link to="/influencers"> <img src={InfluencersSS} className="dashboard-feature-ss"></img></Link>
+                            <Link to="/influencers"> <img src={InfluencersSS} className="dashboard-feature-ss" alt="influencers_image"></img></Link>
                         </Grid>
                     </Grid>
                 </Container>

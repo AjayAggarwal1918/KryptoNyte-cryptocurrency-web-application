@@ -81,7 +81,9 @@ const Compare=(props)=>{
     return (
         <div className="compare-wrapper" style={{background:'#01010eea'}}>
             <div className="compare-logo-wrapper">
-                logo here 
+                <div className="compare-logo_heading">
+                    COMPARE
+                </div>
             </div>
             <div className="compare-content-wrapper">
                 <div className="button-list-wrapper">
