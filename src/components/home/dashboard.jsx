@@ -26,12 +26,17 @@ const Dashboard = () => {
                 <Container>
                     <Grid container direction="row" alignItems="center" spacing={4}>
                         <Grid item xs={5}>
-                            <Link to="/coins"> <img src={CoinsSS} className="dashboard-feature-ss" alt="coins_image"></img></Link>
+                            <Link to="/coins">
+                                <img src={CoinsSS} className="dashboard-feature-ss" alt="coins_image">
+                                </img>
+                            </Link>
                         </Grid>
                         <Grid item xs={7} >
                             <p className="dashboard-feature-text-heading">
                                 <h1> Visit the Coins section</h1>
-                                <p style={{ color: '#d4bfbf' }}>to know statistics of various cryptocurrencies</p>
+                                <p style={{ color: '#d4bfbf' }}>
+                                    to know statistics of various cryptocurrencies
+                                </p>
                                 <Button
                                     style={{ marginTop: '10px ' }}
                                     variant="outlined"
@@ -51,7 +56,9 @@ const Dashboard = () => {
                         <Grid item xs={7} >
                             <p className="dashboard-feature-text-heading">
                                 <h1> Visit the Compare section</h1>
-                                <p style={{ color: '#d4bfbf' }}>to compare the statistics of cryptocurrencies</p>
+                                <p style={{ color: '#d4bfbf' }}>
+                                    to compare the statistics of cryptocurrencies
+                                </p>
                             </p>
                             <Button
                                 style={{ marginTop: '10px ' }}
@@ -63,7 +70,9 @@ const Dashboard = () => {
                                 </Button>
                         </Grid>
                         <Grid item xs={5}>
-                            <Link to="/compare"> <img src={CompareSS} className="dashboard-feature-ss" alt="compare_image"></img></Link>
+                            <Link to="/compare">
+                                <img src={CompareSS} className="dashboard-feature-ss" alt="compare_image"/>
+                            </Link>
                         </Grid>
                     </Grid>
                 </Container>
@@ -72,12 +81,16 @@ const Dashboard = () => {
                 <Container>
                     <Grid container direction="row" alignItems="center" spacing={4}>
                         <Grid item xs={5}>
-                            <Link to="/feeds"> <img src={FeedsSS} className="dashboard-feature-ss" alt="feeds_image"></img></Link>
+                            <Link to="/feeds">
+                                <img src={FeedsSS} className="dashboard-feature-ss" alt="feeds_image"/>
+                            </Link>
                         </Grid>
                         <Grid item xs={7} >
                             <p className="dashboard-feature-text-heading">
                                 <h1> visit the Feeds section</h1>
-                                <p style={{ color: '#d4bfbf' }}>to know what is out there on social media about cryptocurrencies</p>
+                                <p style={{ color: '#d4bfbf' }}>
+                                    to know what is out there on social media about cryptocurrencies
+                                </p>
                             </p>
                             <Button
                                 style={{ marginTop: '10px ' }}
@@ -97,7 +110,9 @@ const Dashboard = () => {
                         <Grid item xs={7} >
                             <p className="dashboard-feature-text-heading">
                                 <h1> visit  Influencers section</h1>
-                                <p style={{ color: '#d4bfbf' }}>to know about influencers in the world of cryptocurrencies</p>
+                                <p style={{ color: '#d4bfbf' }}>
+                                    to know about influencers in the world of cryptocurrencies
+                                </p>
                             </p>
                             <Button
                                 style={{ marginTop: '10px ' }}
@@ -109,7 +124,13 @@ const Dashboard = () => {
                                 </Button>
                         </Grid>
                         <Grid item xs={5}>
-                            <Link to="/influencers"> <img src={InfluencersSS} className="dashboard-feature-ss" alt="influencers_image"></img></Link>
+                            <Link to="/influencers">
+                                <img
+                                    src={InfluencersSS}
+                                    className="dashboard-feature-ss"
+                                    alt="influencers_image">
+                                </img>
+                            </Link>
                         </Grid>
                     </Grid>
                 </Container>
