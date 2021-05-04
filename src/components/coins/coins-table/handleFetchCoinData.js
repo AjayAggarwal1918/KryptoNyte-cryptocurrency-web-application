@@ -1,6 +1,8 @@
 import axios from "axios";
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 export const handleFetchCoinData = (page, perPage) => {
+  const env=runtimeEnv(); 
   const coinSymbols = [
     'BTC', 'LTC', 'ETH', 'PAX', 'SLV', 'NBR', 'STAR', 'DEBASE', 'BOS', 'SMC', 'LNC', 'SWT', 'ART',
     'HTH', 'CHG', 'CARBON', 'BPT', 'CWV', 'XBASE', 'BZNT', 'DELTA', 'MCC', 'TRXC', 'KEY', 'ECA', 'BRC', 'UFR',
@@ -10,7 +12,7 @@ export const handleFetchCoinData = (page, perPage) => {
     'OIL', 'COSM', 'ETHO'
   ];
   const requestedCoins = coinSymbols.slice(perPage * page, perPage * page + perPage);
-  const URL = `https://api.lunarcrush.com/v2?data=assets&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&symbol=${requestedCoins}`;
+  const URL = `https://api.lunarcrush.com/v2?data=assets&key=${env.REACT_APP_CRYPTODATA_API_KEY}&symbol=${requestedCoins}`;
   return axios.get(URL)
     .then(response => {
       console.log(response);

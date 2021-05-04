@@ -1,6 +1,7 @@
 // EXTERNAL DEPENDENCIES 
 import React,{ useEffect,useState } from 'react'; 
 import Axios from 'axios'; 
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 // COMPONENT IMPORTS 
 import ButtonList from '../widgets/button-list/button-list'; 
@@ -14,7 +15,7 @@ import './compare.css';
 
 
 const Compare=(props)=>{
-
+    const env=runtimeEnv(); 
     const [chartsData,setChartsData]=useState({
         data:[],
         right:false,
@@ -35,7 +36,7 @@ const Compare=(props)=>{
         }
         
         if(!(chartsData.value1===chartsData.YAxes1 && chartsData.value2===chartsData.YAxes2)){                       // avoiding infinite loop 
-            Axios.get(`https://api.lunarcrush.com/v2?data=global&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&data_points=45&interval=day`)
+            Axios.get(`https://api.lunarcrush.com/v2?data=global&key=${env.REACT_APP_CRYPTODATA_API_KEY}&data_points=45&interval=day`)
             .then(result=>{
                 const data=result.data.data.timeSeries.map((item,index)=>({
                                                                             name:timeConverter(item.time),

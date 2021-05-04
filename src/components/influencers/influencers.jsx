@@ -5,11 +5,12 @@ import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import InfluencerCard from '../widgets/influencer/influencerCard'
 import InfluencerLoadingCard from '../widgets/influencer/influencerLoadingCard'
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import './influencers.css'
 
 const Influencers = () => {
-
+    const env=runtimeEnv(); 
     const [influencers, setInfluencers] = useState([]);
     const [influencer, setInfluencer] = useState(0);
     const [loadCount, setLoadCount] = useState(10);
@@ -25,7 +26,7 @@ const Influencers = () => {
 
     useEffect(() => {
         Axios
-            .get(`https://api.lunarcrush.com/v2?data=influencers&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&days=30&limit==${loadCount}`)
+            .get(`https://api.lunarcrush.com/v2?data=influencers&key=${env.REACT_APP_CRYPTODATA_API_KEY}&days=30&limit==${loadCount}`)
             .then(res => {
                 setInfluencers(res.data.data)
                 setIsLoading(false);

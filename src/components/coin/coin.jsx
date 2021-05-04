@@ -1,5 +1,6 @@
 import React,{ useState,useEffect } from 'react'; 
 import Axios from 'axios'; 
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 // COMPONENT IMPORTS 
 import GraphTypeC from '../widgets/graph-type-C/graph-type-C'; 
@@ -10,6 +11,8 @@ import './coin.css';
 
 
 const Coin=(props)=>{
+
+    const env=runtimeEnv(); 
 
     const [coinState,setCoinState]=useState({
         data:{},
@@ -31,7 +34,7 @@ const Coin=(props)=>{
 
         if(coinState.dataPoints3.length===0){                                           // preventing infinie loop 
             if(coinState.dataPoints1.length===0){                                       // visiting the website first time
-                Axios.get(`https://api.lunarcrush.com/v2?data=assets&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&interval=day&data_points=365&symbol=${props.match.params.symbol.toString().toUpperCase()}`)
+                Axios.get(`https://api.lunarcrush.com/v2?data=assets&key=${env.REACT_APP_CRYPTODATA_API_KEY}&interval=day&data_points=365&symbol=${props.match.params.symbol.toString().toUpperCase()}`)
                 .then(result=>{
                     const dps1=[],dps2=[],dps3=[];  let sliderMin=null,sliderMax=null; 
 

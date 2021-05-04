@@ -2,6 +2,7 @@
 import React,{ useEffect,useState } from 'react'; 
 import Slider from 'react-slick'; 
 import Axios from 'axios'; 
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 
 //  INTERNAL COMPONENTS 
@@ -11,13 +12,14 @@ import GraphTypeA from '../../widgets/graph-type-A/graph-type-A';
 import './coins-charts.css'; 
 
 const CoinsCharts=()=>{
+    const env=runtimeEnv(); 
     const [chartDataArray,setChartDataArray]=useState([]); 
 
     
     useEffect(()=>{
         if(chartDataArray.length===0){
             Axios
-            .get(`https://api.lunarcrush.com/v2?data=global&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&data_points=30&interval=day`)
+            .get(`https://api.lunarcrush.com/v2?data=global&key=${env.REACT_APP_CRYPTODATA_API_KEY}&data_points=30&interval=day`)
             .then(result=>{
                 const topics=[{label:'TOTAL SOCIAL VOLUME',id:'social_volume_sum',type:'number'},
                             {label:'SOCIAL CONTRIBUTORS',id:'social_contributors',type:'number'},

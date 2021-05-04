@@ -1,6 +1,7 @@
 import React,{ useState,useEffect } from 'react'; 
 import FontAwesome from 'react-fontawesome'; 
 import Axios from 'axios'; 
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 // COMPONENT IMPORTS 
 import FeedsListView from '../widgets/feeds-list-view/feeds-list-view'; 
@@ -10,7 +11,7 @@ import FeedsBlockView from '../widgets/feeds-block-view/feeds-block-view';
 import './feeds.css'; 
 
 const Feeds=()=>{
-
+    const env=runtimeEnv(); 
     const [feedsState,setFeedsState]=useState({
         view:'block',
         data:[],
@@ -19,7 +20,7 @@ const Feeds=()=>{
 
     useEffect(()=>{
         if(feedsState.count!==feedsState.data.length){
-            Axios.get(`https://api.lunarcrush.com/v2?data=feeds&key=${process.env.REACT_APP_CRYPTODATA_API_KEY}&limit=${feedsState.count}`)
+            Axios.get(`https://api.lunarcrush.com/v2?data=feeds&key=${env.REACT_APP_CRYPTODATA_API_KEY}&limit=${feedsState.count}`)
             .then((result)=>{
                 console.log(result.data.data);
                 let updatedFeedsState={...feedsState}; 

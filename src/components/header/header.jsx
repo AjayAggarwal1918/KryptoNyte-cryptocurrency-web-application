@@ -130,23 +130,3 @@ const Header=()=>{
 }; 
 
 export default Header; 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/// linear-gradient(0deg,rgb(74, 0, 167),rgb(154, 58, 180))
-/// rgb(17, 18, 27)
