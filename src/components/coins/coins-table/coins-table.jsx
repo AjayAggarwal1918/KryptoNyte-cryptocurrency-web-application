@@ -51,9 +51,9 @@ const columns = [
         changeColor: (value) => value > 0 ? '#14ef14' : 'red'
     },
     { id: 'volatility', label: 'Volatility', minWidth: 100, format: (value) => value.toFixed(4) },
-    { id: 'social_volume', label: 'Social Volume', minWidth: 100 },//not sure if correct data from api is picked
-    { id: 'social_score_calc_24h_previous', label: 'Social Engagement', minWidth: 100 },//not sure if correct data from api is picked
-    { id: 'social_contributors', label: 'Social Contributors', minWidth: 100 },//not sure if correct data from api is picked
+    { id: 'social_volume', label: 'Social Volume', minWidth: 100 },
+    { id: 'social_score_calc_24h_previous', label: 'Social Engagement', minWidth: 100 },
+    { id: 'social_contributors', label: 'Social Contributors', minWidth: 100 },
     {
         id: 'social_dominance', label: 'Social Dominance (%)',
         minWidth: 100, format: (value) => value.toFixed(4),
@@ -197,7 +197,10 @@ const CoinsTable = () => {
                                             const value = row[column.id];
                                             return (
                                                 showColumn[idx] && <TableCell key={column.id} align={column.align}
-                                                    style={{ backgroundColor: 'rgb(17,18,28)', color: column.changeColor ? column.changeColor(value) : 'white' }}
+                                                    style={{
+                                                        backgroundColor: 'rgb(17,18,28)',
+                                                        color: column.changeColor ? column.changeColor(value) : 'white'
+                                                        }}
                                                     className={idx === 0 ? "coin-table-sticky-col" : ""}
                                                 >
                                                     {idx === 0 && <Link to={`/coin/${row['symbol']}`}> {value} </Link>}
